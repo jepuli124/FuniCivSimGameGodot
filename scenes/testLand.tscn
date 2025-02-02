@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://b08xsyj1g81d0"]
+
+[ext_resource type="Script" path="res://scripts/test_land.gd" id="1_ev4kq"]
+[ext_resource type="PackedScene" uid="uid://b0abxf2haft2l" path="res://objects/floor.tscn" id="1_owvew"]
+[ext_resource type="PackedScene" uid="uid://d3t0qy13fxiru" path="res://objects/tree.tscn" id="3_cdein"]
+[ext_resource type="PackedScene" uid="uid://drym2j5aamb77" path="res://objects/character.tscn" id="4_vp3jv"]
+
+[node name="TestLand" type="Node3D"]
+script = ExtResource("1_ev4kq")
+
+[node name="Floor" parent="." instance=ExtResource("1_owvew")]
+
+[node name="Tree" parent="." instance=ExtResource("3_cdein")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.53585, 1.00523, -0.576883)
+
+[node name="Character" parent="." instance=ExtResource("4_vp3jv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00373101, 1.1254, -0.292542)

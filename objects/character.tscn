@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://drym2j5aamb77"]
+
+[ext_resource type="Script" path="res://scripts/character.gd" id="1_5olw3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjvd2"]
+albedo_color = Color(0.490196, 0.776471, 0.811765, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gqiil"]
+material = SubResource("StandardMaterial3D_rjvd2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e65kw"]
+albedo_color = Color(0.545098, 0.635294, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_l8l6p"]
+material = SubResource("StandardMaterial3D_e65kw")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iv621"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ks1sk"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6wpvf"]
+material = SubResource("StandardMaterial3D_ks1sk")
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ufn33"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_gb7iq"]
+material = SubResource("StandardMaterial3D_ufn33")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m5fgg"]
+height = 10.0
+radius = 1.25
+
+[node name="Character" type="Node3D"]
+script = ExtResource("1_5olw3")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_gqiil")
+
+[node name="Head" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("SphereMesh_l8l6p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_iv621")
+
+[node name="Halo" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("CylinderMesh_6wpvf")
+
+[node name="RightEye" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.510271, 1.21279, 0.116911)
+mesh = SubResource("SphereMesh_gb7iq")
+
+[node name="LeftEye" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.489295, 1.21646, -0.168813)
+mesh = SubResource("SphereMesh_gb7iq")
+skeleton = NodePath("../RightEye")
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5, 0, 0)
+shape = SubResource("CylinderShape3D_m5fgg")
+target_position = Vector3(1, 0, 0)
