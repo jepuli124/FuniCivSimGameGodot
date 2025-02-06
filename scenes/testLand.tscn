@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b08xsyj1g81d0"]
+[gd_scene load_steps=7 format=3 uid="uid://b08xsyj1g81d0"]
 
 [ext_resource type="Script" path="res://scripts/test_land.gd" id="1_ev4kq"]
 [ext_resource type="PackedScene" uid="uid://b0abxf2haft2l" path="res://objects/floor.tscn" id="1_owvew"]
 [ext_resource type="PackedScene" uid="uid://d3t0qy13fxiru" path="res://objects/tree.tscn" id="3_cdein"]
 [ext_resource type="PackedScene" uid="uid://drym2j5aamb77" path="res://objects/character.tscn" id="4_vp3jv"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_2tonq"]
+vertices = PackedVector3Array(-7.5, 0.5, -7.5, -7.5, 0.5, 7.5, 7.5, 0.5, 7.5, 7.5, 0.5, -7.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mhec2"]
+size = Vector2(16, 16)
 
 [node name="TestLand" type="Node3D"]
 script = ExtResource("1_ev4kq")
@@ -15,3 +22,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.53585, 1.00523, -0.576883)
 
 [node name="Character" parent="." instance=ExtResource("4_vp3jv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00373101, 1.1254, -0.292542)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.681951, 0.244969, -0.689154, 0.0928226, 0.963611, 0.250676, 0.725484, 0.106979, -0.679874, -8.50002, 4.72314, -7.90389)
+fov = 68.87
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.874357, 0.199268, -0.442483, 0, 0.911805, 0.410623, 0.485283, -0.359032, 0.797243, 0, 5.74967, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_2tonq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_mhec2")

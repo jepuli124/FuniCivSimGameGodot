@@ -34,30 +34,28 @@ height = 0.2
 height = 10.0
 radius = 1.25
 
-[node name="Character" type="Node3D"]
+[node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_5olw3")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-
-[node name="Body" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="Body" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_gqiil")
 
-[node name="Head" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="Head" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_l8l6p")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_iv621")
 
-[node name="Halo" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="Halo" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 mesh = SubResource("CylinderMesh_6wpvf")
 
-[node name="RightEye" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="RightEye" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.510271, 1.21279, 0.116911)
 mesh = SubResource("SphereMesh_gb7iq")
 
-[node name="LeftEye" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="LeftEye" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.489295, 1.21646, -0.168813)
 mesh = SubResource("SphereMesh_gb7iq")
 skeleton = NodePath("../RightEye")
@@ -66,3 +64,6 @@ skeleton = NodePath("../RightEye")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5, 0, 0)
 shape = SubResource("CylinderShape3D_m5fgg")
 target_position = Vector3(1, 0, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = -1.0
